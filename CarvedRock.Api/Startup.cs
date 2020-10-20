@@ -1,4 +1,5 @@
-﻿using CarvedRock.Api.Data;
+﻿using System;
+using CarvedRock.Api.Data;
 using CarvedRock.Api.GraphQL;
 using CarvedRock.Api.Repositories;
 using GraphQL;
@@ -7,6 +8,7 @@ using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,8 +28,8 @@ namespace CarvedRock.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<CarvedRockDbContext>(options =>
-                options.UseSqlServer(_config["ConnectionStrings:CarvedRock"]));
+            services.AddDbContext<CarvedRockDbContext>(UseSqlServerDatabase);
+                
             services.AddScoped<ProductRepository>();
 
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
@@ -41,7 +43,17 @@ namespace CarvedRock.Api
         {
             app.UseGraphQL<CarvedRockSchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
+
+            dbContext.Database.Migrate();
             dbContext.Seed();
         }
+        
+        private string GetConnectionDefaultString() => _config.GetConnectionString("CarvedRock");
+
+        private static void EnableRetryOnFailure(SqlServerDbContextOptionsBuilder optionsBuilder) =>
+            optionsBuilder.EnableRetryOnFailure(10, TimeSpan.FromSeconds(30), null);
+
+        private void UseSqlServerDatabase(DbContextOptionsBuilder options) =>
+            options.UseSqlServer(GetConnectionDefaultString(), EnableRetryOnFailure);
     }
 }
