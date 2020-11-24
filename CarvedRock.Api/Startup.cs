@@ -1,7 +1,7 @@
 ﻿using System;
 using CarvedRock.Api.Data;
+using CarvedRock.Api.Data.Repositories;
 using CarvedRock.Api.GraphQL;
-using CarvedRock.Api.Repositories;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
