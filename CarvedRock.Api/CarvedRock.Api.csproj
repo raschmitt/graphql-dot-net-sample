@@ -19,5 +19,14 @@
   <ItemGroup>
     <EmbeddedResource Remove="wwwroot\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20181108113631_Products.cs" />
+    <Compile Remove="Data\Migrations\20181108113631_Products.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
   
 </Project>
