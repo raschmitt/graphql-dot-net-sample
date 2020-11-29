@@ -1,0 +1,29 @@
+version: "3.8"
+
+volumes:
+    sql-server:
+
+services:     
+    sql-server:
+        image: "mcr.microsoft.com/mssql/server:2017-latest"
+        container_name: graphql-sample-sql-server
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=sa@a2020
+        ports:
+            - "1433:1433"
+        volumes: 
+            - sql-server:/var/opt/mssql
+
+    graphql-sample:
+        image: graphql-sample
+        container_name: graphql-sample
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports:
+          - "80:80"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
+        depends_on:
+          - sql-server
