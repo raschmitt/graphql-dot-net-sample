@@ -6,7 +6,7 @@ volumes:
 services:     
     sql-server:
         image: "mcr.microsoft.com/mssql/server:2017-latest"
-        container_name: graphql-sample-sql-server
+        container_name: graphql-sample-db
         environment:
             - ACCEPT_EULA=Y
             - SA_PASSWORD=sa@a2020
