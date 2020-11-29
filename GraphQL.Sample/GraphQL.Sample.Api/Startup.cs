@@ -15,49 +15,53 @@ namespace GraphQL.Sample.Api
 {
     public class Startup
     {
-        private readonly IConfiguration _config;
-        private readonly IHostingEnvironment _env;
+        private IConfiguration Configuration { get; set; }
 
-        public Startup(IConfiguration config, IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            _config = config;
-            _env = env;
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddDbContext<Context>(UseSqlServerDatabase);
                 
             services.AddScoped<ProductRepository>();
             services.AddScoped<ProductReviewRepository>();
 
-            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddScoped<Query>();
+            services.AddScoped<Mutation>();
             services.AddScoped<Schema>();
 
-            services.AddGraphQL(o => { o.ExposeExceptions = false; })
+            services.AddGraphQL()
                 .AddGraphTypes(ServiceLifetime.Scoped)
-                .AddDataLoader();
+                .AddDataLoader()
+                .AddSystemTextJson();
         }
 
-        public void Configure(IApplicationBuilder app, Context dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{_env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             
-            Console.WriteLine($"Running on environment: {_env.EnvironmentName}");
+            Configuration = builder.Build();
+            
+            Console.WriteLine($"Running on environment: {env.EnvironmentName}");
+
+            var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var context = ServiceProviderServiceExtensions.GetRequiredService<Context>(serviceScope.ServiceProvider);
+            
+            context.Database.Migrate();
+            context.Seed();
             
             app.UseGraphQL<Schema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
-
-            dbContext.Database.Migrate();
-            dbContext.Seed();
         }
         
-        private string GetConnectionDefaultString() => _config.GetConnectionString("GraphQL.Sample");
+        private string GetConnectionDefaultString() => Configuration.GetConnectionString("GraphQL.Sample");
 
         private static void EnableRetryOnFailure(SqlServerDbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.EnableRetryOnFailure(10, TimeSpan.FromSeconds(30), null);

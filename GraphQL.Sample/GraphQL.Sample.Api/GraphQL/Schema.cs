@@ -1,11 +1,14 @@
-﻿namespace GraphQL.Sample.Api.GraphQL
+﻿using System;
+using GraphQL.Utilities;
+
+namespace GraphQL.Sample.Api.GraphQL
 {
     public class Schema: global::GraphQL.Types.Schema
     {
-        public Schema(IDependencyResolver resolver): base(resolver)
+        public Schema(IServiceProvider serviceProvider): base(serviceProvider)
         {           
-            Query = resolver.Resolve<Query>();
-            Mutation = resolver.Resolve<Mutation>();
+            Query = serviceProvider.GetRequiredService<Query>();
+            Mutation = serviceProvider.GetRequiredService<Mutation>();
         }
     }
 }

@@ -16,8 +16,7 @@ namespace GraphQL.Sample.Api.GraphQL
                 resolve: async context =>
                 {
                     var review = context.GetArgument<ProductReview>("review");
-                    return await context.TryAsyncResolve(
-                        async c => await productReviewRepository.Add(review));
+                    return await productReviewRepository.Add(review);
                 }
             );
         }
