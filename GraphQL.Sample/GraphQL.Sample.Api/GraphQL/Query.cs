@@ -1,19 +1,16 @@
-﻿using GraphQL.Sample.Api.Data.Repositories;
-using GraphQL.Sample.Api.GraphQL.Types;
+﻿using GraphQL.Sample.Api.GraphQL.Types;
+using GraphQL.Sample.Domain.Services;
 using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL
 {
     public class Query: ObjectGraphType
     {
-        public Query(
-            ProductRepository productRepository,
-            ProductReviewRepository productReviewRepository
-            )
+        public Query(IProductService productService)
         {
             Field<ListGraphType<ProductType>>(
                 "products", 
-                resolve: context => productRepository.GetAll()
+                resolve: context => productService.GetAllProducts()
             );
 
             Field<ProductType>(
@@ -25,13 +22,8 @@ namespace GraphQL.Sample.Api.GraphQL
                 resolve: context =>
                 {
                     var id = context.GetArgument<int>("id");
-                    return productRepository.GetById(id);
+                    return productService.GetProductById(id);
                 }
-            );
-            
-            Field<ListGraphType<ProductReviewType>>(
-                "productReviews", 
-                resolve: context => productReviewRepository.GetAll()
             );
         }
     }

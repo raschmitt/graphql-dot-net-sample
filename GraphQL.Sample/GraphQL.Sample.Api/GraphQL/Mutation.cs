@@ -1,13 +1,13 @@
-using GraphQL.Sample.Api.Data.Entities;
-using GraphQL.Sample.Api.Data.Repositories;
 using GraphQL.Sample.Api.GraphQL.Types;
+using GraphQL.Sample.Domain.Entities;
+using GraphQL.Sample.Domain.Services;
 using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL
 {
     public class Mutation : ObjectGraphType
     {
-        public Mutation(ProductReviewRepository productReviewRepository)
+        public Mutation(IProductService productService)
         {
             FieldAsync<ProductReviewType>(
                 "createReview",
@@ -16,7 +16,7 @@ namespace GraphQL.Sample.Api.GraphQL
                 resolve: async context =>
                 {
                     var review = context.GetArgument<ProductReview>("review");
-                    return await productReviewRepository.Add(review);
+                    return await productService.AddProductReview(review);
                 }
             );
         }

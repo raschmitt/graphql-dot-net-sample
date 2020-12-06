@@ -1,6 +1,6 @@
 ﻿using GraphQL.DataLoader;
-using GraphQL.Sample.Api.Data.Entities;
-using GraphQL.Sample.Api.Data.Repositories;
+using GraphQL.Sample.Domain.Entities;
+using GraphQL.Sample.Domain.Services;
 using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL.Types
@@ -8,7 +8,7 @@ namespace GraphQL.Sample.Api.GraphQL.Types
     public class ProductType : ObjectGraphType<Product>
     {
         public ProductType(
-            ProductReviewRepository productReviewRepository,
+            IProductService productService,
             IDataLoaderContextAccessor dataLoaderContextAccessor
             )
         {
@@ -27,8 +27,8 @@ namespace GraphQL.Sample.Api.GraphQL.Types
                 resolve: context =>
                 {
                     var loader = dataLoaderContextAccessor.Context.GetOrAddCollectionBatchLoader<int, ProductReview>(
-                        "GetByProductId", productReviewRepository.GetByProductIds);
-
+                        "GetByProductId", productService.GetProductReviewsByProductIds);
+            
                     return loader.LoadAsync(context.Source.Id);
                 });
         }
