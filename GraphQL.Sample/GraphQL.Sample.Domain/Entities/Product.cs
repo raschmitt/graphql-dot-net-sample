@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GraphQL.Sample.Api.Data.Entities
+namespace GraphQL.Sample.Domain.Entities
 {
     public class Product
     {

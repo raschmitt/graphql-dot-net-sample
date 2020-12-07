@@ -1,9 +1,10 @@
 ﻿using System;
-using GraphQL.Sample.Api.Data;
-using GraphQL.Sample.Api.Data.Repositories;
 using GraphQL.Sample.Api.GraphQL;
+using GraphQL.Sample.Domain.Interfaces.Repositories;
+using GraphQL.Sample.Domain.Services;
+using GraphQL.Sample.Infra.Data.Data;
+using GraphQL.Sample.Infra.Data.Data.Repositories;
 using GraphQL.Server;
-using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,9 +27,10 @@ namespace GraphQL.Sample.Api
         {
             services.AddDbContext<Context>(UseSqlServerDatabase);
                 
-            services.AddScoped<ProductRepository>();
-            services.AddScoped<ProductReviewRepository>();
-
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductReviewRepository, ProductReviewRepository>();
+            services.AddScoped<IProductService, ProductService>();
+            
             services.AddScoped<Query>();
             services.AddScoped<Mutation>();
             services.AddScoped<Schema>();
@@ -46,6 +48,8 @@ namespace GraphQL.Sample.Api
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
             
+            Console.WriteLine("Environment:" + env.EnvironmentName);
+            
             Configuration = builder.Build();
             
             var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
@@ -55,7 +59,7 @@ namespace GraphQL.Sample.Api
             context.Seed();
             
             app.UseGraphQL<Schema>();
-            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
+            app.UseGraphQLPlayground();
         }
         
         private string GetConnectionDefaultString() => Configuration.GetConnectionString("GraphQL.Sample");

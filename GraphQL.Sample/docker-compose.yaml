@@ -23,7 +23,5 @@ services:
             dockerfile: Dockerfile
         ports:
           - "8080:80"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Docker
         depends_on:
           - sql-server

@@ -12,5 +12,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphQL.Sample.Domain\GraphQL.Sample.Domain.csproj" />
+    <ProjectReference Include="..\GraphQL.Sample.Infra.Data\GraphQL.Sample.Infra.Data.csproj" />
+  </ItemGroup>
   
 </Project>

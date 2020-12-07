@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GraphQL.Sample.Api.Data.Entities;
+using GraphQL.Sample.Domain.Entities;
+using GraphQL.Sample.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace GraphQL.Sample.Api.Data.Repositories
+namespace GraphQL.Sample.Infra.Data.Data.Repositories
 {
-    public class ProductReviewRepository
+    public class ProductReviewRepository : IProductReviewRepository
     {
         private readonly Context _dbContext;
 
@@ -23,14 +24,14 @@ namespace GraphQL.Sample.Api.Data.Repositories
             return productReview;
         }
         
-        public Task<List<ProductReview>> GetAll()
+        public async Task<List<ProductReview>> GetAll()
         {
-            return _dbContext.ProductReviews.ToListAsync();
+            return await _dbContext.ProductReviews.ToListAsync();
         }
         
-        public Task<List<ProductReview>> GetByProductId(int productId)
+        public async Task<List<ProductReview>> GetByProductId(int productId)
         {
-            return _dbContext.ProductReviews.Where(pr => pr.ProductId == productId).ToListAsync();
+            return await _dbContext.ProductReviews.Where(pr => pr.ProductId == productId).ToListAsync();
         }    
         
         public async Task<ILookup<int, ProductReview>> GetByProductIds(IEnumerable<int> productIds)

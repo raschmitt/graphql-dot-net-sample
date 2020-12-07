@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GraphQL.Sample.Api.Data.Entities;
+using GraphQL.Sample.Domain.Entities;
 
-namespace GraphQL.Sample.Api.Data
+namespace GraphQL.Sample.Infra.Data.Data
 {
     public static class DataSeed
     {

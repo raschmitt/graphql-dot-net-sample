@@ -1,4 +1,4 @@
-﻿using GraphQL.Sample.Api.Data.Entities;
+﻿using GraphQL.Sample.Domain.Entities;
 using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL.Types

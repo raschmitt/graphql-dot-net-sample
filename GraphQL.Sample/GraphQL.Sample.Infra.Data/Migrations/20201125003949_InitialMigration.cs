@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GraphQL.Sample.Api.Migrations
+namespace GraphQL.Sample.Infra.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {
