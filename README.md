@@ -14,7 +14,7 @@ Sample .Net project with GraphQL API.
 
 1. After cloning this repository go into the `GraphQL.Sample` directory and run `docker-compose up`.
 
-2. Consume the API through `http://localhost:8080/graphql.
+2. Consume the API through `http://localhost:8080/graphql`.
 
 For details on how to consume a GraphQL API please refer to the [official documentation](https://graphql.org/learn/queries/).
 
