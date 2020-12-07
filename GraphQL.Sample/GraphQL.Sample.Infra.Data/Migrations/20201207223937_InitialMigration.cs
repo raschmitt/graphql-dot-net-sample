@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GraphQL.Sample.Infra.Data.Migrations
 {
@@ -13,15 +11,11 @@ namespace GraphQL.Sample.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: false),
+                    Category = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
-                    Stock = table.Column<int>(nullable: false),
-                    Rating = table.Column<int>(nullable: false),
-                    IntroducedAt = table.Column<DateTimeOffset>(nullable: false),
-                    PhotoFileName = table.Column<string>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,7 +27,7 @@ namespace GraphQL.Sample.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Review = table.Column<string>(nullable: true)

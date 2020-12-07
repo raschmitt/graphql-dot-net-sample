@@ -3,5 +3,5 @@ using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL.Types
 {
-    public class ProductTypeEnumType : EnumerationGraphType<ProductTypeEnum> { }
+    public class ProductCategoryType : EnumerationGraphType<ProductCategory> { }
 }
