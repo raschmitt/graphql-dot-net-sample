@@ -19,12 +19,5 @@ namespace GraphQL.Sample.Infra.Data.Data
                 optionsBuilder.UseSqlServer("DefaultConnection");
             }
         }
-        
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.ApplyConfiguration(new ItemMapping());
-        }
     }
 }
