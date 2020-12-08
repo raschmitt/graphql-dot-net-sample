@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraphQL.Sample.Domain.Entities;
 using GraphQL.Sample.Domain.Interfaces.Repositories;
+using GraphQL.Sample.Domain.Interfaces.Services;
 
 namespace GraphQL.Sample.Domain.Services
 {

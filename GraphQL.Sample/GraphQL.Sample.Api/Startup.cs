@@ -1,6 +1,7 @@
 ﻿using System;
 using GraphQL.Sample.Api.GraphQL;
 using GraphQL.Sample.Domain.Interfaces.Repositories;
+using GraphQL.Sample.Domain.Interfaces.Services;
 using GraphQL.Sample.Domain.Services;
 using GraphQL.Sample.Infra.Data.Data;
 using GraphQL.Sample.Infra.Data.Data.Repositories;
