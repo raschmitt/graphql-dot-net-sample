@@ -1,6 +1,6 @@
 ﻿using GraphQL.DataLoader;
 using GraphQL.Sample.Domain.Entities;
-using GraphQL.Sample.Domain.Services;
+using GraphQL.Sample.Domain.Interfaces.Services;
 using GraphQL.Types;
 
 namespace GraphQL.Sample.Api.GraphQL.Types

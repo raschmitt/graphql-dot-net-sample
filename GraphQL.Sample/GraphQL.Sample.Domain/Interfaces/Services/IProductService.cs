@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraphQL.Sample.Domain.Entities;
 
-namespace GraphQL.Sample.Domain.Services
+namespace GraphQL.Sample.Domain.Interfaces.Services
 {
     public interface IProductService
     {

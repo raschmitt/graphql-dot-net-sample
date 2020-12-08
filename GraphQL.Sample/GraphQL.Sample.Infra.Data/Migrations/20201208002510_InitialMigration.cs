@@ -15,7 +15,7 @@ namespace GraphQL.Sample.Infra.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Category = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false)
+                    Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
