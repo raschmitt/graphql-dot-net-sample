@@ -6,6 +6,7 @@ using GraphQL.Sample.Domain.Services;
 using GraphQL.Sample.Infra.Data.Data;
 using GraphQL.Sample.Infra.Data.Data.Repositories;
 using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -60,7 +61,11 @@ namespace GraphQL.Sample.Api
             context.Seed();
             
             app.UseGraphQL<Schema>();
-            app.UseGraphQLPlayground();
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+            {
+                Path = "/ui/playground",
+                HideTracingResponse = true,
+            });
         }
         
         private string GetConnectionDefaultString() => Configuration.GetConnectionString("GraphQL.Sample");
