@@ -7,6 +7,7 @@ using GraphQL.Sample.Domain.Interfaces.Services;
 
 namespace GraphQL.Sample.Domain.Services
 {
+    //ToDo: Retornar DTOs e não entidades concretas
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
