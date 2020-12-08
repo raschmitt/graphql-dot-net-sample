@@ -1,6 +1,6 @@
 ﻿namespace GraphQL.Sample.Domain.Entities
 {
-    public enum ProductTypeEnum
+    public enum ProductCategory
     {
         Boots,
         ClimbingGear,

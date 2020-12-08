@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "CarvedRock.Api": {
+    "GraphQL.Sample.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "ui/playground",
