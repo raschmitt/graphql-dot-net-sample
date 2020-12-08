@@ -15,7 +15,7 @@ namespace GraphQL.Sample.Infra.Data.Data
             {
                 Name = "Mountain Walkers",
                 Description = "Use these sturdy shoes to pass any mountain range with ease.",
-                Price = 219.5m,
+                Price = 219.5,
                 ProductReviews = new List<ProductReview>
                 {
                     new ProductReview
@@ -35,7 +35,7 @@ namespace GraphQL.Sample.Infra.Data.Data
             {
                 Name = "Army Slippers",
                 Description = "For your everyday marches in the army.",
-                Price = 125.9m,
+                Price = 125.9,
                 ProductReviews = new List<ProductReview>
                 {
                     new ProductReview
@@ -55,7 +55,7 @@ namespace GraphQL.Sample.Infra.Data.Data
             {
                 Name = "Backpack Deluxe",
                 Description = "This backpack can survive any tornado.",
-                Price = 199.99m,
+                Price = 199.99,
                 ProductReviews = new List<ProductReview>
                 {
                     new ProductReview
@@ -71,14 +71,14 @@ namespace GraphQL.Sample.Infra.Data.Data
             {
                 Name = "Climbing Kit",
                 Description = "Anything you need to climb the mount Everest.",
-                Price = 299.5m,
+                Price = 299.5,
             });
 
             dbContext.Products.Add(new Product
             {
                 Name = "Blue Racer",
                 Description = "Simply the fastest kayak on earth and beyond for 2 persons.",
-                Price = 350m,
+                Price = 350,
                 ProductReviews = new List<ProductReview>
                 {
                     new ProductReview
@@ -103,7 +103,7 @@ namespace GraphQL.Sample.Infra.Data.Data
             {
                 Name = "Orange Demon",
                 Description = "One person kayak with hyper boost button.",
-                Price = 450m,
+                Price = 450,
                 ProductReviews = new List<ProductReview>
                 {
                     new ProductReview {
