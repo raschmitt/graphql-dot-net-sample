@@ -1,8 +1,5 @@
 trigger:
-- master
-
-pool:
-  vmImage: 'windows-latest'
+  - master
 
 resources:
   repositories:
@@ -12,4 +9,6 @@ resources:
       name: pipeline-templates
 
 extends:
-  template: Build\dotnet.yml@templates
+  template: templates\c_sharp\template.yml@templates
+  parameters:
+    deploy_application: true
