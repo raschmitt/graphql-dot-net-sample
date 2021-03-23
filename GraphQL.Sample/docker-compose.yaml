@@ -9,7 +9,7 @@ services:
         container_name: graphql-sample-db
         environment:
             - ACCEPT_EULA=Y
-            - SA_PASSWORD=sa@a2020
+            - SA_PASSWORD=sa@@2020
         ports:
             - "1433:1433"
         volumes: 
