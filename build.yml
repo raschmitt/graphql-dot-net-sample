@@ -1,6 +1,9 @@
 trigger:
   - master
 
+variables:
+  - group: graphql-dot-net-sample
+
 resources:
   repositories:
     - repository: templates
