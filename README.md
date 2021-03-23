@@ -1,6 +1,6 @@
 # GraphQL .Net - Sample
 
-[![Azure DevOps builds](https://img.shields.io/azure-devops/build/raschmitt/7618d927-8467-43e2-b5e9-1aeddc1fbfdc/24?label=Build%20%26%20Test&style=flat-square)](https://dev.azure.com/raschmitt/raschmitt/_build?definitionId=24)
+[![Azure DevOps builds](https://img.shields.io/azure-devops/build/raschmitt/7618d927-8467-43e2-b5e9-1aeddc1fbfdc/31?label=Build%20%26%20Test&style=flat-square)](https://dev.azure.com/raschmitt/raschmitt/_build?definitionId=31)
 [![Sonar Coverage](https://img.shields.io/sonar/coverage/raschmitt_graphql-dot-net-sample?label=Code%20Coverage&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=raschmitt_graphql-dot-net-sample)
 
 Sample .Net project with GraphQL API.
@@ -25,7 +25,7 @@ For details on how to consume a GraphQL API please refer to the [official docume
 | :---: | :---: |
 | Server name | 127.0.0.1,1433 |
 | Login | sa |
-| Paswword | sa@a2020 |
+| Paswword | sa@@2020 |
 
 ## Useful links
 
